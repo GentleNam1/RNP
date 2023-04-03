@@ -32,18 +32,16 @@ public class ThreadCreator extends Thread {
                 //falls Datei nicht null ist und nicht schon existiert wird dieser erstellt
                 if (filename != null) {
                     //Pfad name
-                    String path = "C:\\Users\\namng\\Downloads\\RNP\\RNP\\src\\Output\\" + filename;
+                    String path = "C:\\Users\\namng\\IdeaProjects\\RNP\\RNP\\src\\Output\\" + filename;
                     File file = new File(path);
                     //Dateierzeugung nur, wenn es die Datei nicht schon gibt
                     if (!file.exists()) {
                         file.createNewFile();
                         System.out.println("Datei " + filename + " wurde erzeugt");
-                    }
+                    }else System.out.println("Datei " + filename + " existiert schon");
                 } else {
-                    if (filenames.isEmpty()){
                         // Wenn es keine Arbeit mehr gibt, beende den Thread
                         interrupt();
-                    }
                 }
             }
         } catch (IOException | InterruptedException e) {

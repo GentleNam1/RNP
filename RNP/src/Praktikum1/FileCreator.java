@@ -6,7 +6,7 @@ import java.util.List;
 public class FileCreator {
 
     //Dateiname
-    private static final String filename = "C:\\Users\\namng\\Downloads\\RNP\\RNP\\src\\Input\\File1.txt";
+    private static final String filename = "C:\\Users\\namng\\IdeaProjects\\RNP\\RNP\\src\\Input\\File1.txt";
 
     public void startFileCreation() {
         //Debug-Ausgaben
