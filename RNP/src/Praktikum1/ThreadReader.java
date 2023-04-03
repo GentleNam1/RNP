@@ -40,14 +40,15 @@ public class ThreadReader extends Thread {
             System.out.println("Thread Count = " + count);
             //Semaphoren Erzeugung für Thread Creator
             Semaphore semaphore = new Semaphore(count);
+            Semaphore semaphore1 = new Semaphore(count);
             //Thread zur Dateierstellung
-            for (int i = 0; i < count; i++) {
-                ThreadCreator threadCreator = new ThreadCreator(filenames, semaphore);
-                threadCreator.setName("ThreadCreator" + i);
-                System.out.println("" + threadCreator.getName() + " wird erzeugt");
-                threadCreator.start();
-                threadCreators.add(threadCreator);
-            }
+//            for (int i = 0; i < count; i++) {
+//                ThreadCreator threadCreator = new ThreadCreator(filenames, semaphore);
+//                threadCreator.setName("ThreadCreator" + i);
+//                System.out.println("" + threadCreator.getName() + " wird erzeugt");
+//                threadCreator.start();
+//                threadCreators.add(threadCreator);
+//            }
             //BufferedReader zum Zeilen einlesen
             BufferedReader reader = new BufferedReader(new FileReader(filename));
             String line;
@@ -57,6 +58,13 @@ public class ThreadReader extends Thread {
                     if (!filenames.contains(line)) {
                         filenames.add(line);
                         System.out.println("Eintrag eingeschrieben");
+                        if (semaphore1.tryAcquire()){
+                            ThreadCreator threadCreator = new ThreadCreator(filenames, semaphore);
+                            threadCreator.setName("ThreadCreator" + threadCreators.size());
+                            System.out.println("" + threadCreator.getName() + " wird erzeugt");
+                            threadCreator.start();
+                            threadCreators.add(threadCreator);
+                        }
                     }
                 } catch (Exception ignored) {
                 }

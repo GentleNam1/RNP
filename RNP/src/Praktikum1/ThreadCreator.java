@@ -38,10 +38,11 @@ public class ThreadCreator extends Thread {
                     if (!file.exists()) {
                         file.createNewFile();
                         System.out.println("Datei " + filename + " wurde erzeugt");
-                    }else System.out.println("Datei " + filename + " existiert schon");
+                    }else{
+                        System.out.println("Datei " + filename + " existiert schon");
+                    }
                 } else {
-                        // Wenn es keine Arbeit mehr gibt, beende den Thread
-                        interrupt();
+                    interrupt();
                 }
             }
         } catch (IOException | InterruptedException e) {
